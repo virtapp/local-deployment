@@ -59,7 +59,8 @@ done  2>/dev/null
 sleep 5 &&           
 kubectl apply -f ./${path_folder}/app-apache.yaml
 kubectl apply -f ./${path_folder}/app-httpd.yaml
-sleep 5 && kubectl create namespace appflex || true
+sleep 5 && kubectl create namespace infra || true
+kubectl apply -f ./${path_folder}/app-infra.yaml
                printf "\nWaiting for application will be ready... \n"
 printf "\nYou should see 'dashboard' as a reponse below (if you do the ingress is working):\n"
 
