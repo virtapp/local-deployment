@@ -1,0 +1,133 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis
+  namespace: argocd
+spec:
+  destination:
+    namespace: centerity
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: charts/infra-charts/redis
+    repoURL: https://github.com/virtapp/kind-terraform.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres
+  namespace: argocd
+spec:
+  destination:
+    namespace: centerity
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: charts/infra-charts/postgres
+    repoURL: https://github.com/virtapp/kind-terraform.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mariadb
+  namespace: argocd
+spec:
+  destination:
+    namespace: centerity
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      parameters:
+      - name: auth.rootPassword
+        value: "123456abc"
+    path: charts/infra-charts/mariadb
+    repoURL: https://github.com/virtapp/kind-terraform.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka
+  namespace: argocd
+spec:
+  destination:
+    namespace: centerity
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      parameters:
+      - name: persistence.storageClass
+        value: ""
+      - name: external.zookeeper.persistence.storageClass
+        value: ""
+      #- name: global.registry
+      #  value: "docker.io/bitnami/kafka:3.2.1-debian-11-r4"
+    path: charts/infra-charts/kafka
+    repoURL: https://github.com/virtapp/kind-terraform.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: influxdb
+  namespace: argocd
+spec:
+  destination:
+    namespace: centerity
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      parameters:
+      - name: adminUser.pwd
+        value: "Rel0aded1!"
+      - name: readUser.pwd
+        value: "guiC3nter1ty4"
+      - name: writeUser.pwd
+        value: "Center1ty5"
+    path: charts/infra-charts/influxdb
+    repoURL: https://github.com/virtapp/kind-terraform.git
+    targetRevision: main
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: elasticsearch
+  namespace: argocd
+spec:
+  destination:
+    namespace: centerity
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: charts/infra-charts/elasticsearch
+    repoURL: https://github.com/virtapp/kind-terraform.git
+    targetRevision: main
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

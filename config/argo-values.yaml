@@ -1,0 +1,16 @@
+controller:
+  enableStatefulSet: true
+
+#server:
+#  autoscaling:
+#    enabled: true
+#    minReplicas: 2
+
+#repoServer:
+#  autoscaling:
+#    enabled: true
+#    minReplicas: 2
+
+configs:
+  secret:
+    argocdServerAdminPassword: $2a$10$lgcvwdvggWeLl1AN14NWsePcWQczWHRQH2eiUNL9w/gN6NaelDl.G

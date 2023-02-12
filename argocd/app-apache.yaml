@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apache
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: apache
+    repoURL: https://github.com/virtapp/deployment.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

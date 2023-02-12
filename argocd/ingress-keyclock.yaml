@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-route-keycloak
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "keycloak"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300s"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300s"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300s"
+    nginx.ingress.kubernetes.io/send-timeout: "300"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "5m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "5m"
+spec:
+  tls:
+  - secretName: virtapp
+  rules:
+
+  - host: app.virtapp.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: httpd-server
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
+
+      - backend:
+          service:
+            name: keycloak-headless
+            port:
+              name: http
+        path: /auth
+        pathType: ImplementationSpecific
+
