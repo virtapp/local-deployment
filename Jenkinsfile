@@ -12,7 +12,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'user-cred', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = params.LINUX_USER
                         remote.password = params.LINUX_PASS
-                        sshCommand remote: remote, command: "sudo rm -rf /tmp/kind-terraform || true"
+                        sshCommand remote: remote, command: "sudo rm -rf /tmp/local-deployment || true"
                     }
                 }
            }
@@ -28,7 +28,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'user-cred', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = params.LINUX_USER
                         remote.password = params.LINUX_PASS
-                        sshCommand remote: remote, command: "df -h && cd /tmp && git clone https://github.com/virtapp/kind-terraform.git"
+                        sshCommand remote: remote, command: "cd /tmp && git clone https://github.com/virtapp/local-deployment.git"
                     }
                 }
            }
@@ -44,7 +44,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'user-cred', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = params.LINUX_USER
                         remote.password = params.LINUX_PASS
-                        sshCommand remote: remote, command: "cd /tmp/kind-terraform/ && bash install.sh"
+                        sshCommand remote: remote, command: "cd /tmp/local-deployment/ && bash install.sh"
                     }
                 }
            }
