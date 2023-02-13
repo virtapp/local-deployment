@@ -39,4 +39,14 @@ spec:
               name: http
         path: /auth
         pathType: ImplementationSpecific
-
+        
+  - host: api.virtapp.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: kong-kong-proxy
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
