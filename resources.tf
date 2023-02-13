@@ -6,28 +6,41 @@ resource "helm_release" "keycloak" {
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "keycloak"
   create_namespace = true
-  timeout = 600
+  wait             = true
   values = [
     file("config/keycloak-value.yaml")
   ]
   depends_on = [helm_release.argocd]
 }
 
+###-kong
+resource "helm_release" "kong" {
+  name       = "kong"
 
-#deploy cert manager
-resource "helm_release" "cert-manager" {
-  name       = "cert-manager"
-  repository = "https://charts.jetstack.io"
-  chart      = "cert-manager"
-  version    = "1.7.1"
-  namespace        = "cert-manager"
+  repository = "https://charts.konghq.com"
+  chart      = "kong"
   create_namespace = true
-  timeout = 300
-  #values = [file("cert-manager-values.yaml")]
-  depends_on = [helm_release.argocd]
+  wait             = true
   set {
-    name  = "installCRDs"
+    name  = "ingressController.enabled"
+    value = "false"
+  }
+
+  set {
+    name  = "admin.enabled"
     value = "true"
   }
 
+  set {
+    name  = "admin.http.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "ingressController.installCRDs"
+    value = "false"
+  }
+  ]
+  depends_on = [helm_release.argocd]
 }
+
