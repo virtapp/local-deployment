@@ -23,7 +23,7 @@ resource "helm_release" "kong" {
   wait             = true
   set {
     name  = "ingressController.enabled"
-    value = "false"
+    value = "true"
   }
 
   set {
@@ -34,6 +34,16 @@ resource "helm_release" "kong" {
   set {
     name  = "admin.http.enabled"
     value = "true"
+  }
+  
+  set {
+    name  = "proxy.enabled"
+    value = "true"
+  }
+  
+  set {
+    name  = "proxy.type"
+    value = "ClusterIP"
   }
 
   set {
