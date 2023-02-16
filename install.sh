@@ -41,8 +41,8 @@ helm fetch rancher-latest/rancher --version=v2.7.0 || true
 kubectl create namespace cattle-system || true
 helm install rancher rancher-latest/rancher --version=v2.7.0 \
   --namespace cattle-system \
-  --set hostname=console.appflex.io \
-  --set ingress.tls.source=appflex \
+  --set hostname=console.virtapp.io \
+  --set ingress.tls.source=virtapp \
   --set replicas=1 \
   --set bootstrapPassword="admin"
 kubectl create namespace keda || true
