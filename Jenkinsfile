@@ -60,7 +60,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'user-cred', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = params.LINUX_USER
                         remote.password = params.LINUX_PASS
-                        sshCommand remote: remote, command: "sudo kubectl get nodes && sudo kubectl get ingress -A"
+                        sshCommand remote: remote, command: "sudo kubectl get svc -A"
                     }
                 }
            }
