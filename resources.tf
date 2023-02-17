@@ -6,7 +6,7 @@ resource "helm_release" "keycloak" {
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "keycloak"
   create_namespace = true
-  timeout = 600
+  timeout = 900
   values = [
     file("config/keycloak-value.yaml")
   ]
