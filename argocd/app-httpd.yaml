@@ -12,5 +12,6 @@ spec:
     path: httpd
     repoURL: https://github.com/virtapp/deployment.git
     targetRevision: HEAD
-  syncPolicy: {}
+  syncPolicy:
+    automated: {}
 
