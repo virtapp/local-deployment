@@ -28,7 +28,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'user-cred', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = params.LINUX_USER
                         remote.password = params.LINUX_PASS
-                        sshCommand remote: remote, command: "sudo git clone https://github.com/virtapp/local-deployment.git"
+                        sshCommand remote: remote, command: "git clone https://github.com/virtapp/local-deployment.git"
                     }
                 }
            }
