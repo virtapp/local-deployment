@@ -22,8 +22,8 @@ sleep 5 && sudo docker ps -a || true
              echo      "----- ............................. -----"
 sleep 5         
 terraform init || exit 1
-terraform validate || exit 1 && terraform plan
-terraform apply -auto-approve
+terraform validate || exit 1 
+terraform plan && terraform apply -auto-approve
 sleep 10 && kubectl get pods -A && sleep 5
 
              echo      "----- ............................. -----"
