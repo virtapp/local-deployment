@@ -38,6 +38,7 @@ helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets
 helm repo add kedacore https://kedacore.github.io/charts || true
 helm repo update && sleep 5
 helm fetch rancher-latest/rancher --version=v2.7.0 || true
+kubectl create namespace infra || true
 kubectl create namespace cattle-system || true
 helm install rancher rancher-latest/rancher --version=v2.7.0 \
   --namespace cattle-system \
@@ -59,7 +60,6 @@ done  2>/dev/null
 sleep 5 &&           
 kubectl apply -f ./${path_folder}/app-apache.yaml
 kubectl apply -f ./${path_folder}/app-httpd.yaml
-sleep 5 && kubectl create namespace infra || true
 kubectl apply -f ./${path_folder}/app-infra.yaml
                printf "\nWaiting for application will be ready... \n"
 printf "\nYou should see 'dashboard' as a reponse below (if you do the ingress is working):\n"
