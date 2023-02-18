@@ -25,7 +25,7 @@ pipeline {
                     remote.host = params.IP_ADDRESS
                     remote.allowAnyHosts = true
                     remote.failOnError = true
-                    withCredentials([usernamePassword(credentialsId: 'user-cred', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    withCredentials([usernamePassword(credentialsId: 'user-cred', passwordVariable: 'password', usernameVariable: 'username'), pty: true]) {
                         remote.user = params.LINUX_USER
                         remote.password = params.LINUX_PASS
                         sshCommand remote: remote, command: "cd /tmp && git clone https://github.com/virtapp/local-deployment.git"
