@@ -97,11 +97,11 @@ image:
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/sonarqube#environment-variables
 ## @param sonarqubeUsername SonarQube&trade; username
 ##
-sonarqubeUsername: user
+sonarqubeUsername: admin  
 ## @param sonarqubePassword SonarQube&trade; user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
-sonarqubePassword: ""
+sonarqubePassword: "q1w2e3r4100@"
 ## @param provisioningFolder Directory to use for provisioning content to Sonarqube
 ##
 provisioningFolder: "/bitnami/sonarqube-provisioning"
