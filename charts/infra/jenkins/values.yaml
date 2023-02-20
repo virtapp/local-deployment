@@ -340,7 +340,7 @@ customReadinessProbe: {}
 service:
   ## @param service.type Jenkins service type
   ##
-  type: LoadBalancer
+  type: ClusterIP
   ## @param service.ports.http Jenkins service HTTP port
   ## @param service.ports.https Jenkins service HTTPS port
   ##
