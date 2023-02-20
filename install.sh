@@ -11,8 +11,6 @@ EOF
 sleep 5
 export path_charts="charts"
 export path_folder="argocd"
-export DOMAIN_NAME="virtapp.io"
-export DNS_NAME="app-console"
 
              echo      "----- ............................. -----"
              echo           "--- INSTALL DEPENDENCIES ---"
@@ -45,7 +43,7 @@ kubectl create namespace infra || true
 kubectl create namespace cattle-system || true
 helm install rancher rancher-latest/rancher --version=v2.7.0 \
   --namespace cattle-system \
-  --set hostname=${DNS_NAME}.${DOMAIN_NAME} \
+  --set hostname=app-console.virtapp.io \
   --set ingress.tls.source=virtapp \
   --set replicas=1 \
   --set bootstrapPassword="admin"
