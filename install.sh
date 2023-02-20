@@ -70,6 +70,7 @@ printf "\nYou should see 'dashboard' as a reponse below (if you do the ingress i
 sleep 5 &&
 kubectl apply -f ./${path_folder}/ingress-keyclock.yaml || true
 kubectl apply -f ./${path_folder}/ingress-argocd.yaml   || true
+kubectl apply -f ./${path_folder}/ingress-jenkins.yaml   || true
 sleep 5 && kubectl get nodes -o wide && sleep 5
 terraform providers && kubectl get ing -A
 
