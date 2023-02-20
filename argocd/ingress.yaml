@@ -1,0 +1,67 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-route-sonarqube
+  namespace: infra
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "route-sonarqube"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300s"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300s"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300s"
+    nginx.ingress.kubernetes.io/send-timeout: "300"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "5m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "5m"
+spec:
+  tls:
+  - secretName: virtapp.io
+  rules:
+
+  - host: app-code.virtapp.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: sonarqube
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+              
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-route-jenkins
+  namespace: infra
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "route-jenkins"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300s"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300s"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300s"
+    nginx.ingress.kubernetes.io/send-timeout: "300"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "5m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "5m"
+spec:
+  tls:
+  - secretName: virtapp.io
+  rules:
+
+  - host: app-cli.virtapp.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: jenkins
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
