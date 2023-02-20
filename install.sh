@@ -15,13 +15,13 @@ export DOMAIN_NAME="virtapp.io"
 export DNS_NAME="app-console"
 
              echo      "----- ............................. -----"
-             echo          "---  IINSTALL DEPENDENCIES ---"
+             echo           "--- INSTALL DEPENDENCIES ---"
              echo      "----- ............................. -----"
              
 source config/dependency.sh
 sleep 5 && sudo docker ps -a || true
              echo      "----- ............................. -----"
-             echo         "---  LOAD-TERRAFORM-FILES  ---"
+             echo           "---  LOAD-TERRAFORM-FILES  ---"
              echo      "----- ............................. -----"
 sleep 5         
 terraform init || exit 1
@@ -30,7 +30,7 @@ terraform plan && terraform apply -auto-approve
 sleep 10 && kubectl get pods -A && sleep 5
 
              echo      "----- ............................. -----"
-             echo          "---  HELM UPDATE REPO  ---"
+             echo           "---  HELM UPDATE REPO  ---"
              echo      "----- ............................. -----"
              
 helm repo add bitnami https://charts.bitnami.com/bitnami || true
