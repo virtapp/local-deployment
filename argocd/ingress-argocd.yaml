@@ -21,7 +21,7 @@ spec:
   - secretName: virtapp.io
   rules:
 
-  - host: argo.virtapp.io
+  - host: app-argo.virtapp.io
     http:
       paths:
       - backend:
