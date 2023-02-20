@@ -430,7 +430,8 @@ initContainers: []
 service:
   ## @param service.type SonarQube&trade; service type
   ##
-  type: LoadBalancer
+  ##type: LoadBalancer
+  type: ClusterIP
   ## @param service.ports.http SonarQube&trade; service HTTP port
   ## @param service.ports.elastic SonarQube&trade; service ElasticSearch port
   ##
