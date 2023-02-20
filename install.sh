@@ -5,18 +5,21 @@ cat <<EOF
 
 Typical installation of the Local Environment 
     1. ### Install Packages
-    2. ### Kubernetes Cluster
+    2. ### Create Kubernetes Cluster
     3. ### Deploy Charts 
 EOF
 sleep 5
 export path_charts="charts"
 export path_folder="argocd"
+export DOMAIN_NAME="virtapp.io"
+export DNS_NAME="app-console"
+
              echo      "----- ............................. -----"
-             echo         "---  Install Dependencies ---"
+             echo          "---  IINSTALL DEPENDENCIES ---"
              echo      "----- ............................. -----"
+             
 source config/dependency.sh
 sleep 5 && sudo docker ps -a || true
-
              echo      "----- ............................. -----"
              echo         "---  LOAD-TERRAFORM-FILES  ---"
              echo      "----- ............................. -----"
@@ -42,7 +45,7 @@ kubectl create namespace infra || true
 kubectl create namespace cattle-system || true
 helm install rancher rancher-latest/rancher --version=v2.7.0 \
   --namespace cattle-system \
-  --set hostname=console.virtapp.io \
+  --set hostname=${DNS_NAME}.${DOMAIN_NAME} \
   --set ingress.tls.source=virtapp \
   --set replicas=1 \
   --set bootstrapPassword="admin"
