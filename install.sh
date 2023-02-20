@@ -46,7 +46,7 @@ helm install rancher rancher-latest/rancher --version=v2.7.0 \
   --set hostname=app-console.virtapp.io \
   --set ingress.tls.source=virtapp \
   --set replicas=1 \
-  --set bootstrapPassword="admin"
+  --set bootstrapPassword="YWRtaW4="
 kubectl create namespace keda || true
 helm install keda kedacore/keda --namespace keda && sleep 5
 echo    Waiting for all pods in running mode:
