@@ -553,7 +553,22 @@ postgresql:
   ##      #!/bin/sh
   ##      echo "Do something."
   ##
-  initdbScripts: {}
+  initdbScripts:
+   my_init_script.sh:
+   |
+    #!/bin/bash
+    cat <<EOF >> /tmp/sqlscript.sql
+    CREATE DATABASE kong;
+    CREATE USER kong WITH ENCRYPTED PASSWORD 'kong';
+    GRANT ALL PRIVILEGES ON DATABASE kong TO kong;
+    CREATE DATABASE keycloak;
+    CREATE USER keycloak WITH ENCRYPTED PASSWORD 'keycloak';
+    GRANT ALL PRIVILEGES ON DATABASE keycloak TO keycloak;
+    EOF
+
+    PGPASSWORD=postgres psql -U postgres -a -f /tmp/sqlscript.sql
+    echo "success" > /tmp/log.txt
+
   ## @param postgresql.initdbScriptsCM ConfigMap with scripts to be run at first boot
   ## NOTE: This will override initdbScripts
   ##
@@ -973,21 +988,6 @@ witness:
   ##initdbScripts: {}
   ## @param witness.initdbScriptsCM ConfigMap with scripts to be run at first boot
   ## NOTE: This will override initdbScripts
-  initdbScripts:
-   my_init_script.sh:
-   |
-    #!/bin/bash
-    cat <<EOF >> /tmp/sqlscript.sql
-    CREATE DATABASE kong;
-    CREATE USER kong WITH ENCRYPTED PASSWORD 'kong';
-    GRANT ALL PRIVILEGES ON DATABASE kong TO kong;
-    CREATE DATABASE keycloak;
-    CREATE USER keycloak WITH ENCRYPTED PASSWORD 'keycloak';
-    GRANT ALL PRIVILEGES ON DATABASE keycloak TO keycloak;
-    EOF
-    PGPASSWORD=postgres psql -U postgres -a -f /tmp/sqlscript.sql
-    echo "success" > /tmp/log.txt
-  ##
   initdbScriptsCM: ""
   ## @param witness.initdbScriptsSecret Secret with scripts to be run at first boot
   ## Note: can be used with initdbScriptsCM or initdbScripts
