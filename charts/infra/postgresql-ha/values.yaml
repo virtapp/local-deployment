@@ -368,7 +368,7 @@ postgresql:
   ## @param postgresql.database PostgreSQL database
   ##
   username: postgres
-  password: ""
+  password: "postgres"
   database: ""
   ## @param postgresql.existingSecret PostgreSQL password using existing secret
   ##
@@ -970,9 +970,23 @@ witness:
   ##      #!/bin/sh
   ##      echo "Do something."
   ##
-  initdbScripts: {}
+  ##initdbScripts: {}
   ## @param witness.initdbScriptsCM ConfigMap with scripts to be run at first boot
   ## NOTE: This will override initdbScripts
+  initdbScripts:
+   my_init_script.sh:
+   |
+    #!/bin/bash
+    cat <<EOF >> /tmp/sqlscript.sql
+    CREATE DATABASE kong;
+    CREATE USER kong WITH ENCRYPTED PASSWORD 'kong';
+    GRANT ALL PRIVILEGES ON DATABASE kong TO kong;
+    CREATE DATABASE keycloak;
+    CREATE USER keycloak WITH ENCRYPTED PASSWORD 'keycloak';
+    GRANT ALL PRIVILEGES ON DATABASE keycloak TO keycloak;
+    EOF
+    PGPASSWORD=postgres psql -U postgres -a -f /tmp/sqlscript.sql
+    echo "success" > /tmp/log.txt
   ##
   initdbScriptsCM: ""
   ## @param witness.initdbScriptsSecret Secret with scripts to be run at first boot
