@@ -24,4 +24,7 @@ variable "ingress_nginx_namespace" {
   default     = "ingress-nginx"
 }
 
-
+variable "charts_path" {
+  default     = "./charts/infra"
+  description = "The charts full path"
+}
