@@ -13,7 +13,8 @@ spec:
     repoURL: https://github.com/virtapp/deployment.git
     targetRevision: HEAD
   syncPolicy:
-    syncOptions:
-    - Replace=true
+    automated:
+      prune: true
+      selfHeal: true
 
 
