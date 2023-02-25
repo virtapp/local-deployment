@@ -75,6 +75,9 @@ kubectl apply -f ./${path_folder}/ingress-jenkins.yaml  || true
 sleep 5 && kubectl get nodes -o wide && sleep 5
 terraform providers && kubectl get ing -A
 
+
              echo      "----- ............................. -----"
              echo           "---  CLUSTER IS READY  ---"
              echo      "----- ............................. -----"
+
+
