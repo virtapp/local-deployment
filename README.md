@@ -3,9 +3,7 @@
  
 Kubernetes in Docker with Terraform
 
-Github top language Github language count Repository size License
 
-About   |   Technologies   |   Requirements   |   Starting   |   License   |   Author
 
 🎯 About
 
