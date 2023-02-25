@@ -13,6 +13,7 @@ resource "helm_release" "keycloak" {
   depends_on = [helm_release.argocd]
 }
 
+
 ###-kong
 resource "helm_release" "kong" {
   name       = "kong"
@@ -52,4 +53,32 @@ resource "helm_release" "kong" {
   }
   depends_on = [helm_release.argocd]
 }
+
+
+###-jenkins
+resource "helm_release" "jenkins" {
+  name       = "jenkins"
+  repository = "https://charts.jenkins.io"
+  chart      = "jenkins"
+
+  values = [
+    "${file("config/jenkins-values.yaml")}"
+  ]
+
+  set_sensitive {
+    name  = "controller.adminUser"
+    value = "admin"
+  }
+  set_sensitive {
+    name = "controller.adminPassword"
+    value = "admin"
+  }
+  set_sensitive {
+    name = "adminPassword"
+    value = "admin"
+  }
+  depends_on = [helm_release.argocd]
+}
+
+
 
