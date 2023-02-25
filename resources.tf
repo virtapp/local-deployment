@@ -62,7 +62,7 @@ resource "helm_release" "jenkins" {
   chart      = "jenkins"
 
   values = [
-    "${file("config/jenkins-values.yaml")}"
+    file("config/jenkins-value.yaml")
   ]
 
   set_sensitive {
