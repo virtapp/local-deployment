@@ -18,4 +18,4 @@ The following tools were used in this project:
 ✅ Requirements
 
 Before starting 🏁, you need to have Git, Docker, KinD and Terraform installed.
-🏁 Starting
+
