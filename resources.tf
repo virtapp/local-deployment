@@ -60,10 +60,7 @@ resource "helm_release" "jenkins" {
   name       = "jenkins"
   repository = "https://charts.jenkins.io"
   chart      = "jenkins"
-
-  values = [
-    file("config/jenkins-value.yaml")
-  ]
+  wait       = true
 
   set_sensitive {
     name  = "controller.adminUser"
