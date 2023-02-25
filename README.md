@@ -1,8 +1,4 @@
-# Local Deployment
-
-
-Kind is a tool for running local Kubernetes clusters using Docker container "nodes". kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
- Kind Tf
+![image](https://user-images.githubusercontent.com/23049337/221374962-49c2c2e2-3ef6-4b6e-808f-1962cb23e130.png)
 
  
 Kubernetes in Docker with Terraform
