@@ -52,6 +52,6 @@ resource "kubernetes_ingress" "ingress-route-devtron" {
       secret_name = "virtapp"
     }
   }
-  # depends_on = [helm_release.devtron]
+   depends_on = [helm_release.devtron]
 }
 
