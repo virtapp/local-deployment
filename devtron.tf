@@ -1,5 +1,4 @@
 ###-devtron
-
 resource "helm_release" "devtron" {
   name       = "devtron"
   repository = "https://helm.devtron.ai"
