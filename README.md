@@ -14,6 +14,8 @@ The following tools were used in this project:
 
     Terraform
     Kind
+    Docker
+    
 
 ✅ Requirements
 
