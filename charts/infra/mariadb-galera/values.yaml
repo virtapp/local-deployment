@@ -275,7 +275,7 @@ db:
   ## @param db.name Name for new database to create
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-on-first-run
   ##
-  name: my_database
+  name: virtapp_io
   ## @param db.forcePassword Option to force users to specify a password. That is required for 'helm upgrade' to work properly.
   ## If it is not force, a random password will be generated.
   ##
