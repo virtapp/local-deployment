@@ -30,8 +30,10 @@ spec:
   source:
     helm:
       parameters:
-      - name: auth.rootPassword
-        value: "test2test"
+      - name: rootUser.user
+        value: "root"
+      - name: rootUser.password
+        value: "q1w2e3r4100@"
     path: charts/infra/mariadb-galera
     repoURL: https://github.com/virtapp/local-deployment.git
     targetRevision: HEAD
