@@ -60,7 +60,7 @@ resource "helm_release" "jenkins" {
   name       = "jenkins"
   repository = "https://charts.jenkins.io"
   chart      = "jenkins"
-  wait       = true
+  timeout = 900
 
   set_sensitive {
     name  = "controller.adminUser"
