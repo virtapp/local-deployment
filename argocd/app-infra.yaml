@@ -24,7 +24,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: infra
+    namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -33,7 +33,7 @@ spec:
       - name: rootUser.user
         value: "root"
       - name: rootUser.password
-        value: "q1w2e3r4100@"
+        value: "fuko09phsurxho"
     path: charts/infra/mariadb-galera
     repoURL: https://github.com/virtapp/local-deployment.git
     targetRevision: HEAD
