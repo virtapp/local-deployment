@@ -58,9 +58,10 @@ done  2>/dev/null
              echo         "---  LOAD-ARGO-APPLICATIONS  ---"
              echo      "----- ............................. -----"      
              
-sleep 5 &&           
-kubectl apply -f ./${path_folder}/app-httpd.yaml
+sleep 5 &&       
 kubectl apply -f ./${path_folder}/app-infra.yaml
+kubectl apply -f ./${path_folder}/app-httpd.yaml
+kubectl apply -f ./${path_folder}/app-local.yaml
                printf "\nWaiting for application will be ready... \n"
 printf "\nYou should see 'dashboard' as a reponse below (if you do the ingress is working):\n"
 
