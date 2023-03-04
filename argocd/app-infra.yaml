@@ -58,23 +58,3 @@ spec:
     targetRevision: HEAD
   syncPolicy:
     automated: {}
-
----
-
-
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: sonarqube
-  namespace: argocd
-spec:
-  destination:
-    namespace: infra
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: charts/infra/sonarqube
-    repoURL: https://github.com/virtapp/local-deployment.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: {}
